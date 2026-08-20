@@ -31,8 +31,8 @@ body {
   align-items: center;
 }
 
-.logo {
-  height: 45px;
+.logo-svg {
+  height: 110px; /* Increased by 100% (from 55px) */
   width: auto;
   display: block;
 }
@@ -151,11 +151,4 @@ footer {
   padding: 2rem;
   border-top: 1px solid #1e293b;
   color: var(--text-dim);
-}
-
-/* SVG Logo Styling */
-.logo-svg {
-  height: 55px;
-  width: auto;
-  display: block;
 }
