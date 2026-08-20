@@ -26,6 +26,11 @@ body {
   z-index: 1000;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
   height: 45px;
   width: auto;
