@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aetheris Edge | Post-Quantum Edge Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Aetheris Edge Logo" class="logo" />
+    </div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#deployments">Deployments</a>
+      <a href="#pipeline">Pipeline</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Aetheris Edge Platform</h1>
+    <p class="subtitle">Next-Generation Post-Quantum Edge Architecture & Cryptographic Black-Box Pipeline (CBBP)</p>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <h3>65%</h3>
+        <p>Wire Bandwidth Reduction</p>
+      </div>
+      <div class="stat-card">
+        <h3>NIST FIPS 204</h3>
+        <p>ML-DSA-44 Lattice Cryptography</p>
+      </div>
+      <div class="stat-card">
+        <h3>QUIC / UDP</h3>
+        <p>Kernel-Bypass Transport</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="container">
+    <h2>Core Technical Pillars</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Post-Quantum Core</h3>
+        <p>Embedded NIST FIPS 204 ML-DSA-44 lattice algorithms protecting telemetry against store-now-decrypt-later attacks.</p>
+      </div>
+      <div class="card">
+        <h3>CBBP Pipeline</h3>
+        <p>Inline cryptographic delta compression and custom flate2 heuristics delivering 60%–65% wire footprint reduction.</p>
+      </div>
+      <div class="card">
+        <h3>Kernel Bypass QUIC</h3>
+        <p>Multi-threaded QUIC/UDP channels with Layer 4 Anycast routing, bypassing TCP stack overhead for ultra-low latency.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture" class="container dark-bg">
+    <h2>Dual-Engine Architecture</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Go Control Plane</h3>
+        <ul>
+          <li><strong>datacenter_telemetry.go:</strong> Egress & thermal governance</li>
+          <li><strong>key_rotator.go:</strong> ML-DSA-44 key rotation cycles</li>
+          <li><strong>config_and_telemetry.go:</strong> Node health aggregation</li>
+          <li><strong>encrypted_logger.go:</strong> FIPS-compliant event logging</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>High-Speed Rust Data Plane</h3>
+        <ul>
+          <li><strong>src/lib.rs:</strong> WASM compilation core</li>
+          <li><strong>keygen_tool.rs:</strong> Native CLI & TPM 2.0 binding</li>
+          <li><strong>demonstration_sim.rs:</strong> CBBP & QUIC simulator</li>
+          <li>Zero-allocation memory patterns for predictable execution</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="deployments" class="container">
+    <h2>Diverse Deployment Domains</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>LEO Satellite Constellations</h3>
+        <p>Sustains high-throughput streaming through extreme latency shifts and frequent orbital handover events across LEO, MEO, and GEO paths.</p>
+      </div>
+      <div class="card">
+        <h3>Tactical & Maritime Edge</h3>
+        <p>Hardware-locked security via TPM 2.0 and UUID binding, protecting disconnected field units.</p>
+      </div>
+      <div class="card">
+        <h3>Enterprise Cloud Centers</h3>
+        <p>Drastically reduces AWS/Azure egress bandwidth tariffs while lowering thermal cooling demand.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pipeline" class="container dark-bg">
+    <h2>Automated Deployment Pipeline</h2>
+    <div class="steps">
+      <div class="step"><span>1</span> <strong>Provision:</strong> Terraform scripts stand up cloud infrastructure & L4 Anycast.</div>
+      <div class="step"><span>2</span> <strong>Orchestrate:</strong> Helm charts deploy WASM data plane services to K8s.</div>
+      <div class="step"><span>3</span> <strong>Bind & Verify:</strong> Nodes bind TPM 2.0 / UUID and rotate initial FIPS 204 keys.</div>
+      <div class="step"><span>4</span> <strong>Stream & Optimize:</strong> CBBP pipeline activates, saving up to 65% wire data.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Top Cover Group | Engineering & Executive Support</p>
+    <p><small>Compliant with NIST FIPS 204 & Federal Zero-Trust Mandates</small></p>
+  </footer>
+</body>
+</html>
