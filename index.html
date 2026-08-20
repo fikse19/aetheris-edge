@@ -17,15 +17,11 @@
               <stop offset="100%" stop-color="#0055ff" />
             </linearGradient>
           </defs>
-          <!-- Orbital Rings -->
           <ellipse cx="250" cy="220" rx="180" ry="60" fill="none" stroke="url(#blueGlow)" stroke-width="8" transform="rotate(-15 250 220)" />
           <ellipse cx="250" cy="220" rx="200" ry="40" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.8" transform="rotate(-25 250 220)" />
-          <!-- A Frame -->
           <path d="M 250 80 L 140 330 L 190 330 L 250 180 L 310 330 L 360 330 Z" fill="url(#blueGlow)" />
           <path d="M 210 260 L 290 260 L 250 170 Z" fill="#0b0f19" />
-          <!-- Inner Arch/Portal -->
           <path d="M 220 330 A 30 30 0 0 1 280 330 Z" fill="none" stroke="#00d2ff" stroke-width="6" />
-          <!-- Text -->
           <text x="250" y="400" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-weight="900" font-size="42" letter-spacing="4">AETHERIS</text>
           <text x="250" y="440" text-anchor="middle" fill="#00d2ff" font-family="sans-serif" font-weight="700" font-size="28" letter-spacing="8">EDGE</text>
         </svg>
@@ -36,6 +32,7 @@
       <a href="#architecture">Architecture</a>
       <a href="#deployments">Deployments</a>
       <a href="#pipeline">Pipeline</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -125,6 +122,24 @@
       <div class="step"><span>2</span> <strong>Orchestrate:</strong> Helm charts deploy WASM data plane services to K8s.</div>
       <div class="step"><span>3</span> <strong>Bind & Verify:</strong> Nodes bind TPM 2.0 / UUID and rotate initial FIPS 204 keys.</div>
       <div class="step"><span>4</span> <strong>Stream & Optimize:</strong> CBBP pipeline activates, saving up to 65% wire data.</div>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <h2>Contact Engineering & Executive Support</h2>
+    <div class="contact-card">
+      <p>Have questions about deployments, pilots, or zero-trust integration? Get in touch with our team directly.</p>
+      <div class="email-box">
+        <strong>Direct Email:</strong> 
+        <a href="mailto:nathan@topcovergroup.com" class="email-link">nathan@topcovergroup.com</a>
+      </div>
+      
+      <form action="https://formspree.io/f/nathan@topcovergroup.com" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email Address" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
     </div>
   </section>
 
