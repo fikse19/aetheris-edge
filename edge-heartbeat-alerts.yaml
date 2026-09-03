@@ -1,0 +1,30 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: aetheris-edge-node-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+  - name: edge_node_telemetry_alerts
+    rules:
+    # Alert 1: Node went offline or stopped sending heartbeats
+    - alert: EdgeNodeOffline
+      expr: absent(aetheris_edge_node_status) or (aetheris_edge_node_status == 0)
+      for: 3m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Edge Node Offline: '{{ $labels.node_id }}'"
+        description: "Node '{{ $labels.node_id }}' belonging to '{{ $labels.client_id }}' has missed heartbeats for over 3 minutes."
+
+    # Alert 2: Outdated software version detected on edge agent
+    - alert: EdgeNodeOutdatedVersion
+      expr: aetheris_edge_node_status{version!="v1.4.2"} == 1
+      for: 10m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Outdated Edge Agent Version on '{{ $labels.node_id }}'"
+        description: "Node '{{ $labels.node_id }}' is running version '{{ $labels.version }}'. Recommended version is v1.4.2."

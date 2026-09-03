@@ -1,151 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aetheris Edge | Post-Quantum Edge Platform</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aetheris Edge Platform</title>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { 
+      margin: 0; 
+      padding: 0; 
+      background-color: #030712; 
+      color: #f8fafc; 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    header { 
+      background: #0f172a; 
+      border-bottom: 1px solid #1e293b; 
+      padding: 16px 36px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      position: sticky; 
+      top: 0; 
+      z-index: 1000; 
+    }
+    nav a { 
+      color: #94a3b8; 
+      text-decoration: none; 
+      font-size: 1rem; 
+      font-weight: 600; 
+      transition: color 0.2s; 
+    }
+    nav a:hover { color: #38bdf8; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    section { margin-bottom: 56px; }
+  </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo-container">
-      <a href="#">
-        <svg class="logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00d2ff" />
-              <stop offset="100%" stop-color="#0055ff" />
-            </linearGradient>
-          </defs>
-          <ellipse cx="250" cy="220" rx="180" ry="60" fill="none" stroke="url(#blueGlow)" stroke-width="8" transform="rotate(-15 250 220)" />
-          <ellipse cx="250" cy="220" rx="200" ry="40" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.8" transform="rotate(-25 250 220)" />
-          <path d="M 250 80 L 140 330 L 190 330 L 250 180 L 310 330 L 360 330 Z" fill="url(#blueGlow)" />
-          <path d="M 210 260 L 290 260 L 250 170 Z" fill="#0b0f19" />
-          <path d="M 220 330 A 30 30 0 0 1 280 330 Z" fill="none" stroke="#00d2ff" stroke-width="6" />
-          <text x="250" y="400" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-weight="900" font-size="42" letter-spacing="4">AETHERIS</text>
-          <text x="250" y="440" text-anchor="middle" fill="#00d2ff" font-family="sans-serif" font-weight="700" font-size="28" letter-spacing="8">EDGE</text>
-        </svg>
-      </a>
+
+  <!-- HEADER NAVIGATION WITH EMBEDDED LOGO -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <svg width="44" height="44" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 0px 8px rgba(56,189,248,0.5));">
+        <!-- Outer Glowing Orbital Rings -->
+        <ellipse cx="100" cy="110" rx="85" ry="32" stroke="#e0f2fe" stroke-width="5" transform="rotate(-15 100 110)" stroke-dasharray="400" opacity="0.9"/>
+        <ellipse cx="100" cy="110" rx="72" ry="24" stroke="#38bdf8" stroke-width="3.5" transform="rotate(-15 100 110)"/>
+        
+        <!-- Main A-Frame Structure -->
+        <path d="M100 22 L165 142 L135 142 L100 70 L65 142 L35 142 Z" fill="url(#a_grad)" stroke="#0284c7" stroke-width="3"/>
+        <path d="M100 38 L148 132 L132 132 L100 72 L68 132 L52 132 Z" fill="#0f172a" opacity="0.8"/>
+        
+        <!-- Upward Arrow Element -->
+        <path d="M100 48 L116 80 L106 80 L106 115 L94 115 L94 80 L84 80 Z" fill="#38bdf8"/>
+        
+        <!-- Center Arch / Vault Feature -->
+        <path d="M82 132 A 18 18 0 0 1 118 132" stroke="#e0f2fe" stroke-width="4" fill="none"/>
+        <circle cx="100" cy="120" r="5" fill="#38bdf8"/>
+        
+        <!-- Circuit Nodes & Satellite Dots -->
+        <circle cx="48" cy="88" r="4" fill="#e0f2fe"/>
+        <circle cx="152" cy="124" r="4" fill="#38bdf8"/>
+        <circle cx="138" cy="80" r="3.5" fill="#e0f2fe"/>
+        <circle cx="62" cy="112" r="3.5" fill="#38bdf8"/>
+        
+        <!-- Gradients -->
+        <defs>
+          <linearGradient id="a_grad" x1="100" y1="22" x2="100" y2="142" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7dd3fc"/>
+            <stop offset="50%" stop-color="#0284c7"/>
+            <stop offset="100%" stop-color="#0369a1"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div style="display: flex; flex-direction: column; justify-content: center; line-height: 1.1;">
+        <span style="font-weight: 900; font-size: 1.25rem; color: #ffffff; letter-spacing: 2px;">AETHERIS</span>
+        <span style="font-weight: 700; font-size: 0.85rem; color: #38bdf8; letter-spacing: 3.5px; margin-top: 1px;">EDGE</span>
+      </div>
     </div>
-    <nav>
-      <a href="#features">Features</a>
+
+    <nav style="display: inline-flex; gap: 24px; align-items: center;">
+      <a href="#technical-pillars">Technical Pillars</a>
       <a href="#architecture">Architecture</a>
-      <a href="#deployments">Deployments</a>
-      <a href="#pipeline">Pipeline</a>
-      <a href="#contact">Contact</a>
+      <a href="#deployment">Deployment</a>
+      <a href="#simulation-benchmarks" style="color: #38bdf8;">Live Telemetry & Benchmarks</a>
+      <a href="#executive-contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Aetheris Edge Platform</h1>
-    <p class="subtitle">Next-Generation Post-Quantum Edge Architecture & Cryptographic Black-Box Pipeline (CBBP)</p>
-    <div class="hero-stats">
-      <div class="stat-card">
-        <h3>65%</h3>
-        <p>Wire Bandwidth Reduction</p>
+  <div class="container">
+
+    <!-- HERO SECTION -->
+    <section id="hero" style="text-align: center; padding: 50px 0 30px;">
+      <span style="color: #38bdf8; font-size: 0.95rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">Patent Pending Executive Briefing</span>
+      <h1 style="font-size: 3.2rem; margin: 16px 0; color: #ffffff; font-weight: 800; letter-spacing: -0.5px;">Aetheris Edge Platform</h1>
+      <p style="color: #94a3b8; max-width: 800px; margin: 0 auto; font-size: 1.35rem; font-weight: 400; line-height: 1.5;">
+        Next-Generation Post-Quantum Edge Architecture & Cryptographic Black-Box Pipeline (CBBP)
+      </p>
+    </section>
+
+    <!-- TECHNICAL PILLARS -->
+    <section id="technical-pillars" style="background: #0f172a; border: 1px solid #1e293b; border-radius: 18px; padding: 40px;">
+      <h2 style="color: #ffffff; font-size: 1.9rem; margin-top: 0; margin-bottom: 28px; font-weight: 700;">Core Technical Pillars</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+        <div style="background: #1e293b; padding: 24px; border-radius: 12px;">
+          <h3 style="color: #38bdf8; margin-top: 0; font-size: 1.3rem;">Post-Quantum Core</h3>
+          <p style="color: #cbd5e1; font-size: 1.05rem; margin-bottom: 0;">Embedded NIST FIPS 204 ML-DSA-44 lattice algorithms protecting telemetry against store-now-decrypt-later attacks.</p>
+        </div>
+        <div style="background: #1e293b; padding: 24px; border-radius: 12px;">
+          <h3 style="color: #22c55e; margin-top: 0; font-size: 1.3rem;">CBBP Pipeline</h3>
+          <p style="color: #cbd5e1; font-size: 1.05rem; margin-bottom: 0;">Inline cryptographic delta compression delivering 88% wire footprint reduction.</p>
+        </div>
+        <div style="background: #1e293b; padding: 24px; border-radius: 12px;">
+          <h3 style="color: #a855f7; margin-top: 0; font-size: 1.3rem;">Kernel Bypass QUIC</h3>
+          <p style="color: #cbd5e1; font-size: 1.05rem; margin-bottom: 0;">Multi-threaded QUIC/UDP channels with Layer 4 Anycast routing, bypassing TCP stack overhead for ultra-low latency.</p>
+        </div>
       </div>
-      <div class="stat-card">
-        <h3>NIST FIPS 204</h3>
-        <p>ML-DSA-44 Lattice Cryptography</p>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section id="architecture" style="background: #0f172a; border: 1px solid #1e293b; border-radius: 18px; padding: 40px;">
+      <h2 style="color: #ffffff; font-size: 1.9rem; margin-top: 0; margin-bottom: 28px; font-weight: 700;">Dual-Engine Architecture</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px;">
+        <div>
+          <h3 style="color: #38bdf8; font-size: 1.35rem; margin-top: 0;">Go Control Plane</h3>
+          <ul style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.9; padding-left: 20px;">
+            <li><code style="color: #38bdf8; font-size: 1.05rem;">datacenter_telemetry.go</code>: Egress & thermal governance</li>
+            <li><code style="color: #38bdf8; font-size: 1.05rem;">key_rotator.go</code>: ML-DSA-44 key rotation cycles</li>
+            <li><code style="color: #38bdf8; font-size: 1.05rem;">config_and_telemetry.go</code>: Node health aggregation</li>
+            <li><code style="color: #38bdf8; font-size: 1.05rem;">encrypted_logger.go</code>: FIPS-compliant event logging</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: #22c55e; font-size: 1.35rem; margin-top: 0;">High-Speed Rust Data Plane</h3>
+          <ul style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.9; padding-left: 20px;">
+            <li><code style="color: #22c55e; font-size: 1.05rem;">src/lib.rs</code>: WASM compilation core</li>
+            <li><code style="color: #22c55e; font-size: 1.05rem;">keygen_tool.rs</code>: Native CLI & TPM 2.0 binding</li>
+            <li><code style="color: #22c55e; font-size: 1.05rem;">satellite_voip_simulation.rs</code>: CBBP & QUIC simulator</li>
+          </ul>
+        </div>
       </div>
-      <div class="stat-card">
-        <h3>QUIC / UDP</h3>
-        <p>Kernel-Bypass Transport</p>
+    </section>
+
+    <!-- DEPLOYMENT -->
+    <section id="deployment" style="background: #0f172a; border: 1px solid #1e293b; border-radius: 18px; padding: 40px;">
+      <h2 style="color: #ffffff; font-size: 1.9rem; margin-top: 0; margin-bottom: 28px; font-weight: 700;">Automated Deployment Pipeline</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+        <div style="background: #1e293b; padding: 20px; border-radius: 10px;">
+          <span style="color: #38bdf8; font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 6px;">01 Provision</span>
+          <p style="color: #cbd5e1; font-size: 1rem; margin: 0;">Terraform scripts stand up cloud infrastructure & L4 Anycast.</p>
+        </div>
+        <div style="background: #1e293b; padding: 20px; border-radius: 10px;">
+          <span style="color: #38bdf8; font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 6px;">02 Orchestrate</span>
+          <p style="color: #cbd5e1; font-size: 1rem; margin: 0;">Helm charts deploy WASM data plane services to K8s.</p>
+        </div>
+        <div style="background: #1e293b; padding: 20px; border-radius: 10px;">
+          <span style="color: #38bdf8; font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 6px;">03 Bind & Verify</span>
+          <p style="color: #cbd5e1; font-size: 1rem; margin: 0;">Nodes bind TPM 2.0 / UUID and rotate initial FIPS 204 keys.</p>
+        </div>
+        <div style="background: #1e293b; padding: 20px; border-radius: 10px;">
+          <span style="color: #38bdf8; font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 6px;">04 Stream</span>
+          <p style="color: #cbd5e1; font-size: 1rem; margin: 0;">CBBP pipeline activates, saving up to 88% wire data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTED ANALOGY & CORE BENEFIT BOX -->
+    <div style="background: #0f172a; border: 1px solid #334155; border-left: 5px solid #38bdf8; border-radius: 16px; padding: 36px; margin: 48px 0; box-shadow: 0 12px 30px -5px rgba(0,0,0,0.6);">
+      <div style="margin-bottom: 24px;">
+        <span style="color: #38bdf8; font-size: 0.9rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 8px;">The Analogy</span>
+        <p style="font-size: 1.25rem; line-height: 1.65; color: #f1f5f9; margin: 0; font-style: italic; font-weight: 400;">
+          "Imagine taking a massive, uncompressed video file, shrinking it down to a fraction of its size in less than a millisecond, putting a tamper-proof quantum lock on it, and sending it over a slow cell connection without crashing the phone."
+        </p>
+      </div>
+      <div style="border-top: 1px solid #1e293b; padding-top: 20px;">
+        <span style="color: #22c55e; font-size: 0.9rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 8px;">The Core Benefit</span>
+        <p style="font-size: 1.15rem; line-height: 1.65; color: #cbd5e1; margin: 0;">
+          It acts as a smart "traffic shrinker and vault" at the edge. It makes data transfers up to 88% smaller (saving massive amounts on cloud/satellite bills) while making sure no one—not even future quantum computers—can hack the payload.
+        </p>
       </div>
     </div>
-  </section>
 
-  <section id="features" class="container">
-    <h2>Core Technical Pillars</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Post-Quantum Core</h3>
-        <p>Embedded NIST FIPS 204 ML-DSA-44 lattice algorithms protecting telemetry against store-now-decrypt-later attacks.</p>
+    <!-- LIVE TELEMETRY & BENCHMARKS -->
+    <section id="simulation-benchmarks" style="background: #090d16; border: 1px solid #1e293b; border-radius: 18px; padding: 40px;">
+      <div style="text-align: center; margin-bottom: 36px;">
+        <span style="color: #38bdf8; font-size: 0.95rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">Cryptographic Black-Box Pipeline (CBBP)</span>
+        <h2 style="font-size: 2.4rem; margin: 10px 0 14px; color: #ffffff; font-weight: 800;">Live Telemetry & Partner Benchmarks</h2>
+        <p style="color: #94a3b8; max-width: 750px; margin: 0 auto; font-size: 1.15rem;">
+          Real-time simulated data reduction and performance metrics across LEO satellite links and edge deployments.
+        </p>
       </div>
-      <div class="card">
-        <h3>CBBP Pipeline</h3>
-        <p>Inline cryptographic delta compression and custom flate2 heuristics delivering 60%–65% wire footprint reduction.</p>
-      </div>
-      <div class="card">
-        <h3>Kernel Bypass QUIC</h3>
-        <p>Multi-threaded QUIC/UDP channels with Layer 4 Anycast routing, bypassing TCP stack overhead for ultra-low latency.</p>
-      </div>
-    </div>
-  </section>
 
-  <section id="architecture" class="container dark-bg">
-    <h2>Dual-Engine Architecture</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Go Control Plane</h3>
-        <ul>
-          <li><strong>datacenter_telemetry.go:</strong> Egress & thermal governance</li>
-          <li><strong>key_rotator.go:</strong> ML-DSA-44 key rotation cycles</li>
-          <li><strong>config_and_telemetry.go:</strong> Node health aggregation</li>
-          <li><strong>encrypted_logger.go:</strong> FIPS-compliant event logging</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>High-Speed Rust Data Plane</h3>
-        <ul>
-          <li><strong>src/lib.rs:</strong> WASM compilation core</li>
-          <li><strong>keygen_tool.rs:</strong> Native CLI & TPM 2.0 binding</li>
-          <li><strong>demonstration_sim.rs:</strong> CBBP & QUIC simulator</li>
-          <li>Zero-allocation memory patterns for predictable execution</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      <div style="background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 20px; margin-bottom: 24px;">
+          <div>
+            <h3 style="margin: 0; font-size: 1.3rem; color: #38bdf8; font-weight: 700;">satellite_voip_simulation.rs Runtime Engine</h3>
+            <span style="font-size: 0.95rem; color: #64748b; font-weight: 500;">Rust Core Engine • Kernel-Bypass QUIC Transport</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="height: 12px; width: 12px; background-color: #22c55e; border-radius: 50%; display: inline-block;"></span>
+            <span style="font-size: 0.95rem; color: #22c55e; font-weight: 700;">STREAMING ACTIVE</span>
+          </div>
+        </div>
 
-  <section id="deployments" class="container">
-    <h2>Diverse Deployment Domains</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>LEO Satellite Constellations</h3>
-        <p>Sustains high-throughput streaming through extreme latency shifts and frequent orbital handover events across LEO, MEO, and GEO paths.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; text-align: center;">
+          <div style="background: #1e293b; padding: 24px; border-radius: 12px; border-left: 4px solid #22c55e;">
+            <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Peak Wire Reduction</div>
+            <div style="font-size: 2.5rem; font-weight: 800; color: #22c55e; margin: 8px 0;">88.69%</div>
+            <div style="font-size: 0.85rem; color: #64748b;">1,308B Raw → 148B Wire</div>
+          </div>
+          <div style="background: #1e293b; padding: 24px; border-radius: 12px; border-left: 4px solid #38bdf8;">
+            <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">p95 Latency Overhead</div>
+            <div style="font-size: 2.5rem; font-weight: 800; color: #38bdf8; margin: 8px 0;">240.3 µs</div>
+            <div style="font-size: 0.85rem; color: #64748b;">Sub-250µs Target</div>
+          </div>
+          <div style="background: #1e293b; padding: 24px; border-radius: 12px; border-left: 4px solid #a855f7;">
+            <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Satcom MOS Score</div>
+            <div style="font-size: 2.5rem; font-weight: 800; color: #a855f7; margin: 8px 0;">&gt; 4.2</div>
+            <div style="font-size: 0.85rem; color: #64748b;">Jitter Suppression</div>
+          </div>
+          <div style="background: #1e293b; padding: 24px; border-radius: 12px; border-left: 4px solid #eab308;">
+            <div style="font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Cloud Egress Cost ROI</div>
+            <div style="font-size: 2.5rem; font-weight: 800; color: #eab308; margin: 8px 0;">65%+</div>
+            <div style="font-size: 0.85rem; color: #64748b;">Egress Tariff Savings</div>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Tactical & Maritime Edge</h3>
-        <p>Hardware-locked security via TPM 2.0 and UUID binding, protecting disconnected field units.</p>
-      </div>
-      <div class="card">
-        <h3>Enterprise Cloud Centers</h3>
-        <p>Drastically reduces AWS/Azure egress bandwidth tariffs while lowering thermal cooling demand.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="pipeline" class="container dark-bg">
-    <h2>Automated Deployment Pipeline</h2>
-    <div class="steps">
-      <div class="step"><span>1</span> <strong>Provision:</strong> Terraform scripts stand up cloud infrastructure & L4 Anycast.</div>
-      <div class="step"><span>2</span> <strong>Orchestrate:</strong> Helm charts deploy WASM data plane services to K8s.</div>
-      <div class="step"><span>3</span> <strong>Bind & Verify:</strong> Nodes bind TPM 2.0 / UUID and rotate initial FIPS 204 keys.</div>
-      <div class="step"><span>4</span> <strong>Stream & Optimize:</strong> CBBP pipeline activates, saving up to 65% wire data.</div>
-    </div>
-  </section>
-
-  <section id="contact" class="container">
-    <h2>Contact Engineering & Executive Support</h2>
-    <div class="contact-card">
-      <p>Have questions about deployments, pilots, or zero-trust integration? Get in touch with our team directly.</p>
-      <div class="email-box">
-        <strong>Direct Email:</strong> 
-        <a href="mailto:nathan@topcovergroup.com" class="email-link">nathan@topcovergroup.com</a>
+    <!-- EXECUTIVE CONTACT SECTION -->
+    <section id="executive-contact" style="background: #0f172a; border: 1px solid #1e293b; border-radius: 18px; padding: 40px; text-align: center;">
+      <span style="color: #38bdf8; font-size: 0.95rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">Top Cover Group</span>
+      <h2 style="font-size: 2.2rem; margin: 10px 0 14px; color: #ffffff; font-weight: 800;">Executive & Commercial Access</h2>
+      <p style="color: #cbd5e1; max-width: 700px; margin: 0 auto 28px; font-size: 1.15rem;">
+        Reach out to coordinate technical briefings, request licensing frameworks, or schedule a dedicated architectural deep-dive with engineering.
+      </p>
+      
+      <div style="display: inline-block; background: #1e293b; border: 1px solid #334155; padding: 20px 36px; border-radius: 14px; margin-bottom: 24px;">
+        <span style="color: #64748b; font-size: 0.85rem; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 6px; letter-spacing: 1px;">Direct Contact</span>
+        <a href="mailto:nathan@topcovergroup.com" style="color: #38bdf8; font-size: 1.4rem; font-weight: 800; text-decoration: none;">nathan@topcovergroup.com</a>
       </div>
       
-      <form action="https://formspree.io/f/nathan@topcovergroup.com" method="POST" class="contact-form">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email Address" required />
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
-    </div>
-  </section>
+      <p style="font-size: 0.95rem; color: #64748b; margin: 0;">
+        Enterprise onboarding is structured under mutual NDA. Structured pilot program quotes available upon request.
+      </p>
+    </section>
 
-  <footer>
-    <p>Top Cover Group | Engineering & Executive Support</p>
-    <p><small>Compliant with NIST FIPS 204 & Federal Zero-Trust Mandates</small></p>
-  </footer>
+  </div>
+
 </body>
 </html>

@@ -1,0 +1,30 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: aetheris-quota-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+  - name: client_quota_alerts
+    rules:
+    # Alert 1: Client reached 80% of monthly quota (80,000 requests)
+    - alert: ClientQuota80PercentReached
+      expr: sum(aetheris_api_requests_total) by (client_id) >= 80000
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Pilot Client '{{ $labels.client_id }}' reached 80% of quota"
+        description: "Client '{{ $labels.client_id }}' has used {{ $value }} requests out of 100,000."
+
+    # Alert 2: Client reached 100% of monthly quota (100,000 requests)
+    - alert: ClientQuotaExceeded
+      expr: sum(aetheris_api_requests_total) by (client_id) >= 100000
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Pilot Client '{{ $labels.client_id }}' EXCEEDED monthly quota"
+        description: "Client '{{ $labels.client_id }}' reached total quota limit with {{ $value }} requests."

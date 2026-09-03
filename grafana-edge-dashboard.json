@@ -1,0 +1,194 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "title": "Active Satellite Nodes",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "sum(node_active_status{company_id=~\"$company_id\"})",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "title": "Voice Quality (MOS Score)",
+      "type": "gauge",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "avg(voip_mos_score{company_id=~\"$company_id\"}) by (company_id)",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": 1,
+          "max": 5,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 3.5
+              },
+              {
+                "color": "green",
+                "value": 4.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "title": "Live Bandwidth Savings",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "(1 - (sum(rate(node_network_transmit_bytes_total{company_id=~\"$company_id\"}[1m])) / sum(rate(network_raw_bytes_total{company_id=~\"$company_id\"}[1m])))) * 100",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "green",
+                "value": 75
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "title": "A/B Bandwidth Comparison (KB/s)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 0,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "sum(rate(network_raw_bytes_total{company_id=~\"$company_id\"}[1m])) by (company_id) / 1024",
+          "legendFormat": "Raw Baseline - {{company_id}}",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "sum(rate(node_network_transmit_bytes_total{company_id=~\"$company_id\"}[1m])) by (company_id) / 1024",
+          "legendFormat": "Aetheris Optimized - {{company_id}}",
+          "refId": "B"
+        }
+      ]
+    },
+    {
+      "title": "Processing Latency (p95 Microseconds)",
+      "type": "stat",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "histogram_quantile(0.95, sum(rate(aetheris_processing_latency_microseconds_bucket{company_id=~\"$company_id\"}[1m])) by (le))",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "\u00b5s"
+        }
+      }
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "company_id",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "query": "label_values(company_id)",
+        "includeAll": true,
+        "multi": true,
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        }
+      }
+    ]
+  },
+  "title": "Aetheris Telemetry Benchmark Dashboard",
+  "uid": "aetheris-benchmark-v1"
+}
