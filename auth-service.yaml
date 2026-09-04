@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aetheris-auth-service
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aetheris-auth
+  template:
+    metadata:
+      labels:
+        app: aetheris-auth
+    spec:
+      containers:
+      - name: auth-server
+        image: node:18-alpine
+        command: ["node", "-e"]
+        args:
+        - |
+          const http = require('http');
+
+          const CLIENT_MAP = {
+            'aetheris-pilot-key-12345': 'Client-Alpha',
+            'aetheris-pilot-key-67890': 'Client-Beta'
+          };
+
+          const counts = {};
+          const nodeHealth = {};
+
+          const server = http.createServer((req, res) => {
+            // 1. Prometheus Metrics Endpoint
+            if (req.url === '/metrics') {
+              let metricsText = '# HELP aetheris_api_requests_total Total API requests processed per pilot client key\n';
+              metricsText += '# TYPE aetheris_api_requests_total counter\n';
+              for (const [key, val] of Object.entries(counts)) {
+                metricsText += `aetheris_api_requests_total{${key}} ${val}\n`;
+              }
+
+              metricsText += '\n# HELP aetheris_edge_node_status Edge node heartbeat status (1=HEALTHY, 0=UNHEALTHY)\n';
+              metricsText += '# TYPE aetheris_edge_node_status gauge\n';
+              for (const [nodeId, info] of Object.entries(nodeHealth)) {
+                const val = info.status === 'HEALTHY' ? 1 : 0;
+                metricsText += `aetheris_edge_node_status{node_id="${nodeId}",client_id="${info.client_id}",version="${info.agent_version}"} ${val}\n`;
+              }
+
+              res.writeHead(200, { 'Content-Type': 'text/plain; version=0.0.4' });
+              res.end(metricsText);
+              return;
+            }
+
+            // 2. Heartbeat Ingestion Endpoint
+            if (req.url === '/heartbeat' && req.method === 'POST') {
+              let body = '';
+              req.on('data', chunk => { body += chunk.toString(); });
+              req.on('end', () => {
+                try {
+                  const payload = JSON.parse(body);
+                  nodeHealth[payload.node_id] = {
+                    client_id: payload.client_id,
+                    agent_version: payload.agent_version,
+                    status: payload.status,
+                    last_seen: Date.now()
+                  };
+                  console.log(`[HEARTBEAT RECEIVED] Node: ${payload.node_id} | Status: ${payload.status}`);
+                  res.writeHead(200, { 'Content-Type': 'application/json' });
+                  res.end(JSON.stringify({ acknowledged: true }));
+                } catch (e) {
+                  res.writeHead(400, { 'Content-Type': 'text/plain' });
+                  res.end('Invalid JSON payload');
+                }
+              });
+              return;
+            }
+
+            // 3. API Key Authorization
+            const apiKey = req.headers['x-api-key'];
+            const clientId = CLIENT_MAP[apiKey];
+
+            if (clientId) {
+              const label = `client_id="${clientId}",status="200"`;
+              counts[label] = (counts[label] || 0) + 1;
+              res.writeHead(200, { 'Content-Type': 'text/plain' });
+              res.end('Authorized');
+            } else {
+              const label = `client_id="unknown",status="401"`;
+              counts[label] = (counts[label] || 0) + 1;
+              res.writeHead(401, { 'Content-Type': 'text/plain' });
+              res.end('Unauthorized API Key');
+            }
+          });
+
+          server.listen(5000, () => console.log('Auth & Telemetry service listening on 5000'));
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aetheris-auth-service
+  namespace: default
+  labels:
+    app: aetheris-auth
+spec:
+  selector:
+    app: aetheris-auth
+  ports:
+  - name: http
+    port: 80
+    targetPort: 5000
