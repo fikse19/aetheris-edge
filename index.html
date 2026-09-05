@@ -251,3 +251,39 @@
 
 </body>
 </html>
+
+
+<div class="workload-matrix" style="margin-top: 25px;">
+    <h3>Workload Optimization Matrix</h3>
+    <table style="width:100%; border-collapse: collapse; text-align: left; font-size: 0.95em;">
+        <thead>
+            <tr style="border-bottom: 2px solid #00ffcc;">
+                <th style="padding: 8px;">Traffic / Workload Type</th>
+                <th style="padding: 8px;">Bandwidth Reduction</th>
+                <th style="padding: 8px;">Primary Mechanism</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <td style="padding: 8px;"><strong>VoIP / SIP & RTP Headers</strong></td>
+                <td style="padding: 8px; color: #00ffcc;"><strong>Up to 88%</strong></td>
+                <td style="padding: 8px;">Header suppression & delta encoding</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <td style="padding: 8px;"><strong>IoT & Satellite Telemetry</strong></td>
+                <td style="padding: 8px; color: #00ffcc;"><strong>75% – 85%</strong></td>
+                <td style="padding: 8px;">Structured payload serialization</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <td style="padding: 8px;"><strong>Command & Control (C2)</strong></td>
+                <td style="padding: 8px; color: #00ffcc;"><strong>70% – 80%</strong></td>
+                <td style="padding: 8px;">Compact state-sync & ML-DSA signing</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;"><strong>Pre-compressed Video (H.265)</strong></td>
+                <td style="padding: 8px; color: #00ffcc;"><strong>15% – 25%</strong></td>
+                <td style="padding: 8px;">Transport burst smoothing & frame sizing</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
