@@ -1,94 +1,135 @@
-import Image from "next/image";
+'use client';
+
+import React, { useState } from 'react';
 
 export default function Home() {
+  const [monthlyEgressTB, setMonthlyEgressTB] = useState<number>(100);
+  const costPerGB = 0.09;
+  const compressionRatio = 0.55;
+
+  const currentCost = monthlyEgressTB * 1024 * costPerGB;
+  const optimizedCost = currentCost * (1 - compressionRatio);
+  const savings = currentCost - optimizedCost;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-  "use client";
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
+      <nav className="border-b border-slate-800 bg-slate-900/50 backdrop-blur fixed top-0 w-full z-50">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <svg className="w-10 h-10 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 17 22 12" />
+            </svg>
+            <span className="font-bold text-xl tracking-wider text-slate-100">AETHERIS<span className="text-cyan-400">EDGE</span></span>
+          </div>
+          <div className="flex items-center gap-6 text-sm font-medium">
+            <a href="#architecture" className="hover:text-cyan-400 transition">Architecture</a>
+            <a href="#benchmarks" className="hover:text-cyan-400 transition">Benchmarks</a>
+            <a href="#calculator" className="hover:text-cyan-400 transition">Calculator</a>
+            <a href="#contact" className="px-4 py-2 bg-cyan-500 text-slate-950 rounded-md font-semibold hover:bg-cyan-400 transition">Contact</a>
+          </div>
+        </div>
+      </nav>
 
-  import { useState } from "react";
-
-  export default function Home() {
-    const [monthlyEgressTB, setMonthlyEgressTB] = useState<number>(100);
-    const costPerGB = 0.09;
-    const compressionRatio = 0.55;
-
-    const totalBytesGB = monthlyEgressTB * 1024;
-    const rawMonthlyCost = totalBytesGB * costPerGB;
-    const savedMonthly = rawMonthlyCost * compressionRatio;
-    const savedAnnual = savedMonthly * 12;
-
-    return (
-      <main className="min-h-screen bg-slate-950 font-sans text-white antialiased">
-        <section className="mx-auto max-w-7xl px-6 py-24 text-center">
-          <span className="mb-6 inline-block rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-wide text-blue-400">
-            Verified Performance • NIST FIPS 204 Ready
-          </span>
-          <h1 className="mb-6 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-5xl font-extrabold tracking-tight text-transparent md:text-6xl">
-            The Post-Quantum Edge Data-Plane for Tactical &amp; SATCOM Networks
+      <main className="pt-28 pb-20 max-w-7xl mx-auto px-6 space-y-20">
+        <section className="text-center space-y-6 max-w-4xl mx-auto pt-8">
+          <div className="inline-block px-3 py-1 bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 rounded-full text-xs font-mono uppercase tracking-widest">
+            Tactical Post-Quantum Edge Data-Plane
+          </div>
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white">
+            Secure, Workload-Aware Data Plane for Constrained Networks
           </h1>
-          <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-slate-400">
-            Cut cloud egress fees by <strong className="font-semibold text-blue-400">55%</strong> while securing live voice and telemetry over severely degraded satellite links. Built with Rust, verified with Prometheus &amp; Grafana.
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            Combining a Go control plane with a Rust WASM data plane to optimize satellite (SATCOM) and remote tactical link telemetry.
           </p>
+        </section>
 
-          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur-sm sm:grid-cols-2 md:grid-cols-4">
-            <div className="border-b border-slate-800 pb-4 text-center sm:border-b-0 sm:border-r sm:pb-0">
-              <div className="text-3xl font-extrabold text-blue-400">54.5% - 56.9%</div>
-              <div className="mt-1 text-sm text-slate-400">Real-Time Delta Compression</div>
+        <section id="benchmarks" className="grid md:grid-cols-3 gap-6">
+          <div className="p-6 bg-slate-900/60 border border-slate-800 rounded-xl space-y-2">
+            <div className="text-4xl font-extrabold text-cyan-400">~88%</div>
+            <div className="text-sm text-slate-400 uppercase font-mono">Peak Payload Reduction</div>
+            <p className="text-xs text-slate-500">Observed on structured, highly repetitive synthetic telemetry workloads.</p>
+          </div>
+          <div className="p-6 bg-slate-900/60 border border-slate-800 rounded-xl space-y-2">
+            <div className="text-4xl font-extrabold text-cyan-400">~240 µs</div>
+            <div className="text-sm text-slate-400 uppercase font-mono">Micro-Kernel Overhead</div>
+            <p className="text-xs text-slate-500">Execution time from ingress to egress dispatch under 100-millicore limits.</p>
+          </div>
+          <div className="p-6 bg-slate-900/60 border border-slate-800 rounded-xl space-y-2">
+            <div className="text-4xl font-extrabold text-cyan-400">FIPS 204</div>
+            <div className="text-sm text-slate-400 uppercase font-mono">ML-DSA-44 Authentication</div>
+            <p className="text-xs text-slate-500">NIST post-quantum signatures with 100% tamper detection in lab tests.</p>
+          </div>
+        </section>
+
+        <section id="architecture" className="space-y-8">
+          <h2 className="text-3xl font-bold text-slate-100">End-to-End Pipeline Architecture</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="p-8 bg-slate-900/40 border border-slate-800 rounded-xl space-y-4">
+              <h3 className="text-xl font-semibold text-cyan-400">Go Control Plane</h3>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                Lightweight orchestration service managing telemetry aggregation, dynamic key updates, and configuration sync across distributed nodes.
+              </p>
             </div>
-            <div className="border-b border-slate-800 pb-4 text-center sm:border-b-0 sm:pb-0 md:border-r">
-              <div className="text-3xl font-extrabold text-emerald-400">MOS 3.44+</div>
-              <div className="mt-1 text-sm text-slate-400">Voice Quality over Impaired SATCOM</div>
-            </div>
-            <div className="border-b border-slate-800 pb-4 text-center sm:border-b-0 sm:border-r sm:pb-0">
-              <div className="text-3xl font-extrabold text-purple-400">FIPS 204</div>
-              <div className="mt-1 text-sm text-slate-400">Post-Quantum Cryptographic Integrity</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-extrabold text-amber-400">Multi-Tenant</div>
-              <div className="mt-1 text-sm text-slate-400">Prometheus &amp; Grafana Telemetry</div>
+            <div className="p-8 bg-slate-900/40 border border-slate-800 rounded-xl space-y-4">
+              <h3 className="text-xl font-semibold text-cyan-400">Rust WASM Data Plane</h3>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                High-performance runtime for inline delta compression, AES-256-GCM encryption, and WASM/Containerized deployment at the edge.
+              </p>
             </div>
           </div>
         </section>
 
-        <section className="border-y border-slate-800/80 bg-slate-900/30 px-6 py-20">
-          <div className="mx-auto max-w-4xl rounded-2xl border border-slate-800 bg-slate-950 p-8 shadow-2xl">
-            <h2 className="mb-2 text-center text-3xl font-bold text-white">Interactive Egress Savings Calculator</h2>
-            <p className="mb-8 text-center text-slate-400">See how much Aetheris saves your cloud infrastructure based on verified 55% edge delta-compression.</p>
+        <section id="calculator" className="p-8 bg-slate-900/40 border border-slate-800 rounded-2xl max-w-3xl mx-auto space-y-6">
+          <div className="space-y-2 text-center">
+            <h2 className="text-2xl font-bold text-white">Egress Savings Calculator</h2>
+            <p className="text-sm text-slate-400">Estimate bandwidth savings across constrained SATCOM & tactical links.</p>
+          </div>
 
-            <div className="mb-8">
-              <div className="mb-3 flex justify-between font-medium text-slate-300">
-                <span>Monthly Cloud Egress Traffic:</span>
-                <span className="font-bold text-blue-400">{monthlyEgressTB} TB / Month</span>
-              </div>
-              <input
-                type="range"
-                min="10"
-                max="2000"
-                step="10"
-                value={monthlyEgressTB}
-                onChange={(event) => setMonthlyEgressTB(Number(event.target.value))}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-800 accent-blue-500"
-                aria-label="Monthly cloud egress traffic in terabytes"
-              />
+          <div className="space-y-4 pt-4">
+            <div className="flex justify-between text-sm font-medium">
+              <span className="text-slate-300">Monthly Egress Traffic:</span>
+              <span className="text-cyan-400 font-mono font-bold">{monthlyEgressTB} TB</span>
             </div>
+            <input 
+              type="range" 
+              min="10" 
+              max="1000" 
+              step="10" 
+              value={monthlyEgressTB} 
+              onChange={(e) => setMonthlyEgressTB(Number(e.target.value))}
+              className="w-full accent-cyan-400 bg-slate-800 h-2 rounded-lg cursor-pointer"
+            />
+          </div>
 
-            <div className="grid grid-cols-1 gap-6 rounded-xl border border-slate-800 bg-slate-900 p-6 md:grid-cols-2">
-              <div>
-                <div className="text-sm text-slate-400">Estimated Monthly Savings</div>
-                <div className="text-3xl font-extrabold text-emerald-400">${savedMonthly.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
-                <div className="mt-1 text-xs text-slate-500">Based on $0.09/GB baseline cloud egress fee</div>
-              </div>
-              <div>
-                <div className="text-sm text-slate-400">Estimated Annual Savings</div>
-                <div className="text-3xl font-extrabold text-emerald-400">${savedAnnual.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
-                <div className="mt-1 text-xs text-slate-500">Direct bottom-line infrastructure cost reduction</div>
-              </div>
+          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800/80 text-center">
+            <div className="p-4 bg-slate-950/60 border border-slate-800 rounded-lg">
+              <div className="text-xs text-slate-500 uppercase font-mono mb-1">Standard Cost</div>
+              <div className="text-xl font-bold text-slate-300">${currentCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
             </div>
+            <div className="p-4 bg-cyan-950/30 border border-cyan-500/30 rounded-lg">
+              <div className="text-xs text-cyan-400 uppercase font-mono mb-1">Monthly Savings</div>
+              <div className="text-xl font-bold text-cyan-400">${savings.toLocaleString(undefined, { maximumFractionDigits: 0 })}</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="p-8 bg-slate-900/80 border border-slate-800 rounded-xl max-w-xl mx-auto space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="text-2xl font-bold text-white">Initiate Joint Evaluation</h2>
+            <p className="text-sm text-slate-400">Schedule a 30-minute technical review and live prototype demonstration.</p>
+          </div>
+          <div className="text-center pt-2">
+            <a 
+              href="mailto:nathan@topcovergroup.com" 
+              className="inline-block px-6 py-3 bg-cyan-500 text-slate-950 font-bold rounded-lg hover:bg-cyan-400 transition"
+            >
+              Contact nathan@topcovergroup.com
+            </a>
           </div>
         </section>
       </main>
-    );
-  }
     </div>
   );
 }
