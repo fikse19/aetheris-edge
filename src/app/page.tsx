@@ -15,22 +15,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
-      {/* PERSISTENT HEADER WITH INLINE SVG EMBLEM */}
+      {/* PERSISTENT HEADER WITH NAVIGATION & CONTACT */}
       <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
             {/* INLINE VECTOR LOGO EMBLEM */}
             <div className="h-10 w-10 relative flex-shrink-0 rounded-md bg-slate-950 border border-cyan-500/40 flex items-center justify-center p-1.5 shadow-md shadow-cyan-500/10">
               <svg viewBox="0 0 100 100" className="w-full h-full text-cyan-400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Orbital Ring */}
                 <ellipse cx="50" cy="50" rx="42" ry="18" stroke="currentColor" strokeWidth="4" className="text-cyan-200/80" transform="rotate(-25 50 50)" />
-                {/* Main A-Frame */}
                 <path d="M50 12 L18 82 H36 L50 48 L64 82 H82 Z" fill="currentColor" />
-                {/* Inner Arrow / Arch */}
                 <path d="M50 28 L32 72 H42 L50 54 L58 72 H68 Z" fill="#020617" />
                 <path d="M50 38 L38 68 H62 Z" fill="currentColor" className="text-cyan-300" />
                 <path d="M50 48 L44 68 H56 Z" fill="#020617" />
-                {/* Center Node Dot */}
                 <circle cx="50" cy="58" r="4" fill="currentColor" className="text-cyan-200" />
               </svg>
             </div>
@@ -49,6 +45,7 @@ export default function Home() {
               { id: "cybersecurity", label: "Cybersecurity" },
               { id: "benchmarks", label: "Benchmarks" },
               { id: "evaluation", label: "Evaluation" },
+              { id: "contact", label: "Contact" },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -64,12 +61,14 @@ export default function Home() {
             ))}
           </nav>
 
-          <a
-            href="mailto:nathan@topcovergroup.com"
-            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2 rounded-md transition-all shadow-lg shadow-cyan-500/20"
-          >
-            Schedule Review
-          </a>
+          <div className="flex items-center space-x-3">
+            <a
+              href="mailto:nathan@topcovergroup.com"
+              className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2 rounded-md transition-all shadow-lg shadow-cyan-500/20"
+            >
+              Contact Us
+            </a>
+          </div>
         </div>
       </header>
 
@@ -270,10 +269,43 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* DEDICATED CONTACT SECTION */}
+        <section id="contact" className="border-t border-slate-800/80 pt-12 space-y-8">
+          <div>
+            <h2 className="text-xs font-bold text-cyan-400 uppercase tracking-widest">Initiate Joint Evaluation</h2>
+            <h3 className="text-2xl font-bold text-white mt-1">Schedule a Technical Review</h3>
+            <p className="text-sm text-slate-400 mt-1">Schedule a 30-minute technical review, live prototype demonstration, or request our technical diligence package under mutual NDA.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl space-y-4">
+              <h4 className="text-base font-bold text-white">Direct Channels</h4>
+              <div className="space-y-2 text-xs text-slate-300">
+                <p><span className="text-slate-500">Email:</span> <a href="mailto:nathan@topcovergroup.com" className="text-cyan-400 hover:underline">nathan@topcovergroup.com</a></p>
+                <p><span className="text-slate-500">Website:</span> <a href="https://www.aetheris-edge.com" className="text-cyan-400 hover:underline">www.aetheris-edge.com</a></p>
+                <p><span className="text-slate-500">Organization:</span> Top Cover Group, Inc.</p>
+              </div>
+            </div>
+
+            <div className="bg-cyan-950/20 border border-cyan-800/50 p-6 rounded-xl space-y-4 flex flex-col justify-between">
+              <div>
+                <h4 className="text-base font-bold text-white">Technical Diligence Package</h4>
+                <p className="text-xs text-slate-400 mt-1">Detailed architecture specifications, implementation details, reproducible test methodologies, and test artifacts available under mutual NDA.</p>
+              </div>
+              <a
+                href="mailto:nathan@topcovergroup.com?subject=Aetheris%20Edge%20Technical%20Diligence%20Request"
+                className="inline-block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-md transition-all shadow-lg shadow-cyan-500/20 mt-2"
+              >
+                Request Diligence Package
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* FOOTER */}
-      <footer id="contact" className="border-t border-slate-800 bg-slate-900/50 py-12 px-6 mt-24">
+      <footer className="border-t border-slate-800 bg-slate-900/50 py-12 px-6 mt-24">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-400">
           <div>
             <p className="font-bold text-slate-200">Top Cover Group, Inc.</p>
