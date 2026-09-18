@@ -19,11 +19,13 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <img 
-              src="/logo.jpg" 
-              alt="Aetheris Edge Logo" 
-              className="h-10 w-10 object-contain rounded-md border border-cyan-500/30"
-            />
+            <div className="h-10 w-10 relative flex-shrink-0 rounded-md overflow-hidden border border-cyan-500/30 bg-slate-900">
+              <img 
+                src="/logo.jpg" 
+                alt="Aetheris Edge" 
+                className="h-full w-full object-cover"
+              />
+            </div>
             <div className="flex flex-col">
               <span className="font-extrabold tracking-wider text-cyan-400 text-base leading-none">AETHERIS EDGE</span>
               <span className="text-[10px] text-slate-400 tracking-normal mt-1">Top Cover Group</span>
