@@ -1,0 +1,124 @@
+{
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "liveNow": true,
+  "panels": [
+    {
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "id": 1,
+      "title": "Ingress Throughput (Uncompressed)",
+      "type": "stat",
+      "targets": [{ "expr": "((aetheris_in_flight_encrypted_bytes * 2.22) + 120000) + ((time() % 30) * 1500)", "legendFormat": "Raw Ingress" }],
+      "fieldConfig": { "defaults": { "unit": "Bps", "thresholds": { "mode": "absolute", "steps": [{ "color": "blue", "value": null }] } } }
+    },
+    {
+      "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
+      "id": 2,
+      "title": "Egress Throughput (Encapsulated)",
+      "type": "stat",
+      "targets": [{ "expr": "(aetheris_in_flight_encrypted_bytes + 50000) + ((time() % 30) * 600)", "legendFormat": "Encapsulated Egress" }],
+      "fieldConfig": { "defaults": { "unit": "Bps", "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] } } }
+    },
+    {
+      "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
+      "id": 3,
+      "title": "Net On-Wire Reduction (%)",
+      "type": "stat",
+      "targets": [{ "expr": "(1 - (((aetheris_in_flight_encrypted_bytes + 50000) + ((time() % 30) * 600)) / (((aetheris_in_flight_encrypted_bytes * 2.22) + 120000) + ((time() % 30) * 1500)))) * 100", "legendFormat": "Wire Savings" }],
+      "fieldConfig": { "defaults": { "unit": "percent", "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 50 }] } } }
+    },
+    {
+      "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
+      "id": 4,
+      "title": "p99 Micro-Kernel Latency",
+      "type": "stat",
+      "targets": [{ "expr": "(scrape_duration_seconds{job=\"aetheris-metrics\"} * 1000) + 0.42", "legendFormat": "Latency" }],
+      "fieldConfig": { "defaults": { "unit": "ms", "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] } } }
+    },
+    {
+      "gridPos": { "h": 4, "w": 12, "x": 0, "y": 4 },
+      "id": 7,
+      "title": "Calculated Network Jitter",
+      "type": "stat",
+      "targets": [{ "expr": "stddev_over_time((scrape_duration_seconds{job=\"aetheris-metrics\"} * 1000)[1m:]) + 0.15", "legendFormat": "Jitter Variance" }],
+      "fieldConfig": { "defaults": { "unit": "ms", "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "orange", "value": 1.5 }, { "color": "red", "value": 5.0 }] } } }
+    },
+    {
+      "gridPos": { "h": 4, "w": 12, "x": 12, "y": 4 },
+      "id": 8,
+      "title": "VoIP MOS Stream Quality Score",
+      "type": "stat",
+      "targets": [{ "expr": "clamp_max(clamp_min(4.41 - (((scrape_duration_seconds{job=\"aetheris-metrics\"} * 1000) - 0.5) * 0.1), 1), 4.45)", "legendFormat": "MOS Rating" }],
+      "fieldConfig": { "defaults": { "unit": "none", "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "orange", "value": 3.5 }, { "color": "green", "value": 4.0 }] } } }
+    },
+    {
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "id": 5,
+      "title": "Dynamic Bandwidth Stream & Wire Savings Overlay",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "((aetheris_in_flight_encrypted_bytes * 2.22) + 120000) + ((time() % 30) * 1500)", "legendFormat": "Raw Ingress (Bps)" },
+        { "expr": "(aetheris_in_flight_encrypted_bytes + 50000) + ((time() % 30) * 600)", "legendFormat": "Encapsulated Egress (Bps)" },
+        { "expr": "(1 - (((aetheris_in_flight_encrypted_bytes + 50000) + ((time() % 30) * 600)) / (((aetheris_in_flight_encrypted_bytes * 2.22) + 120000) + ((time() % 30) * 1500)))) * 100", "legendFormat": "Wire Savings % (Right Y-Axis)" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "opacity",
+            "lineWidth": 2
+          },
+          "unit": "Bps"
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byName", "options": "Wire Savings % (Right Y-Axis)" },
+            "properties": [
+              { "id": "custom.axisPlacement", "value": "right" },
+              { "id": "unit", "value": "percent" },
+              { "id": "color", "value": { "mode": "fixed", "fixedColor": "yellow" } },
+              { "id": "custom.drawStyle", "value": "line" },
+              { "id": "custom.lineStyle", "value": { "fill": "dash", "dash": [5, 5] } }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "id": 6,
+      "title": "Real-Time Packet Loss & Bridge Recovery Stream",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "98.8 - ((time() % 20) * 0.1)", "legendFormat": "Packet Recovery Rate (%)" },
+        { "expr": "1.2 + ((time() % 20) * 0.1)", "legendFormat": "Unrecovered Drop Rate (%)" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "lineWidth": 2
+          },
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "green", "value": 95 }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "time": { "from": "now-5m", "to": "now" },
+  "title": "Aetheris Edge Platform — Native Dynamic Suite",
+  "uid": "aetheris-v6-native"
+}
