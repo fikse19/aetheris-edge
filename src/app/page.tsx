@@ -15,12 +15,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
-      {/* PERSISTENT HEADER WITH TAB NAVIGATION */}
-      <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-4">
+      {/* PERSISTENT HEADER WITH LOGO & TAB NAVIGATION */}
+      <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <span className="font-extrabold tracking-wider text-cyan-400 text-lg">AETHERIS EDGE</span>
-            <span className="text-xs text-slate-500 border-l border-slate-700 pl-3 hidden sm:inline">Top Cover Group</span>
+            <img 
+              src="/logo.jpg" 
+              alt="Aetheris Edge Logo" 
+              className="h-10 w-10 object-contain rounded-md border border-cyan-500/30"
+            />
+            <div className="flex flex-col">
+              <span className="font-extrabold tracking-wider text-cyan-400 text-base leading-none">AETHERIS EDGE</span>
+              <span className="text-[10px] text-slate-400 tracking-normal mt-1">Top Cover Group</span>
+            </div>
           </div>
 
           <nav className="hidden md:flex space-x-1 lg:space-x-2 bg-slate-950/60 p-1 rounded-lg border border-slate-800 text-xs">
