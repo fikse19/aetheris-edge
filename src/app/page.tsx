@@ -33,7 +33,7 @@ export default function Home() {
 
             <div className="flex flex-col">
               <span className="font-extrabold tracking-wider text-cyan-400 text-base leading-none">AETHERIS EDGE</span>
-              <span className="text-[10px] text-slate-400 tracking-normal mt-1">Top Cover Group</span>
+              <span className="text-[10px] text-slate-400 tracking-normal mt-1">Top Cover Group LLC</span>
             </div>
           </div>
 
@@ -284,7 +284,7 @@ export default function Home() {
               <div className="space-y-2 text-xs text-slate-300">
                 <p><span className="text-slate-500">Email:</span> <a href="mailto:nathan@topcovergroup.com" className="text-cyan-400 hover:underline">nathan@topcovergroup.com</a></p>
                 <p><span className="text-slate-500">Website:</span> <a href="https://www.aetheris-edge.com" className="text-cyan-400 hover:underline">www.aetheris-edge.com</a></p>
-                <p><span className="text-slate-500">Organization:</span> Top Cover Group, Inc.</p>
+                <p><span className="text-slate-500">Organization:</span> Top Cover Group LLC</p>
               </div>
             </div>
 
@@ -308,7 +308,7 @@ export default function Home() {
       <footer className="border-t border-slate-800 bg-slate-900/50 py-12 px-6 mt-24">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-400">
           <div>
-            <p className="font-bold text-slate-200">Top Cover Group, Inc.</p>
+            <p className="font-bold text-slate-200">Top Cover Group LLC</p>
             <p className="text-slate-500">Aetheris Edge Platform — Patent Pending</p>
           </div>
           <div className="flex items-center space-x-6">
