@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 
-const EMBEDDED_LOGO = "data:image/jpeg;base64,ZXhwb3J0IGRlY2xhcmUgZnVuY3Rpb24gTmV4dExvZ28oeyBvblRyaWdnZXJDbGljaywgLi4uYnV0dG9uUHJvcHMgfTogewogICAgb25UcmlnZ2VyQ2xpY2s6ICgpID0+IHZvaWQ7Cn0gJiBSZWFjdC5Db21wb25lbnRQcm9wczwnYnV0dG9uJz4pOiBpbXBvcnQoInJlYWN0IikuSlNYLkVsZW1lbnQ7Cg==";
-
 export default function Home() {
   const [activeTab, setActiveTab] = useState("overview");
 
@@ -17,17 +15,26 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
-      {/* PERSISTENT HEADER WITH EMBEDDED LOGO */}
+      {/* PERSISTENT HEADER WITH INLINE SVG EMBLEM */}
       <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="h-10 w-10 relative flex-shrink-0 rounded-md overflow-hidden border border-cyan-500/40 bg-slate-900 flex items-center justify-center">
-              <img 
-                src={EMBEDDED_LOGO} 
-                alt="Aetheris Edge Logo" 
-                className="h-full w-full object-cover"
-              />
+            {/* INLINE VECTOR LOGO EMBLEM */}
+            <div className="h-10 w-10 relative flex-shrink-0 rounded-md bg-slate-950 border border-cyan-500/40 flex items-center justify-center p-1.5 shadow-md shadow-cyan-500/10">
+              <svg viewBox="0 0 100 100" className="w-full h-full text-cyan-400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Orbital Ring */}
+                <ellipse cx="50" cy="50" rx="42" ry="18" stroke="currentColor" strokeWidth="4" className="text-cyan-200/80" transform="rotate(-25 50 50)" />
+                {/* Main A-Frame */}
+                <path d="M50 12 L18 82 H36 L50 48 L64 82 H82 Z" fill="currentColor" />
+                {/* Inner Arrow / Arch */}
+                <path d="M50 28 L32 72 H42 L50 54 L58 72 H68 Z" fill="#020617" />
+                <path d="M50 38 L38 68 H62 Z" fill="currentColor" className="text-cyan-300" />
+                <path d="M50 48 L44 68 H56 Z" fill="#020617" />
+                {/* Center Node Dot */}
+                <circle cx="50" cy="58" r="4" fill="currentColor" className="text-cyan-200" />
+              </svg>
             </div>
+
             <div className="flex flex-col">
               <span className="font-extrabold tracking-wider text-cyan-400 text-base leading-none">AETHERIS EDGE</span>
               <span className="text-[10px] text-slate-400 tracking-normal mt-1">Top Cover Group</span>
