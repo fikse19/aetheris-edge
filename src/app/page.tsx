@@ -15,16 +15,27 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
-      {/* PERSISTENT HEADER WITH LOGO & TAB NAVIGATION */}
+      {/* PERSISTENT HEADER WITH TAB NAVIGATION & LOGO */}
       <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="h-10 w-10 relative flex-shrink-0 rounded-md overflow-hidden border border-cyan-500/30 bg-slate-900">
+            {/* LOGO WITH INLINE EMBLEM FALLBACK */}
+            <div className="h-10 w-10 relative flex-shrink-0 rounded-md overflow-hidden border border-cyan-500/40 bg-slate-900 flex items-center justify-center p-1">
               <img 
                 src="/logo.jpg" 
                 alt="Aetheris Edge" 
                 className="h-full w-full object-cover"
+                onError={(e) => {
+                  // Fallback to stylized SVG emblem if static image fails to load
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                }}
               />
+              <svg className="h-full w-full text-cyan-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 2L2 22h20L12 2z" />
+                <path d="M12 6l6 12H6l6-12z" />
+                <circle cx="12" cy="13" r="2" fill="currentColor" />
+              </svg>
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold tracking-wider text-cyan-400 text-base leading-none">AETHERIS EDGE</span>
