@@ -77,29 +77,29 @@ export default function Home() {
         <section id="overview" className="space-y-6 pt-4">
           <div className="inline-flex items-center space-x-2 bg-cyan-950/50 border border-cyan-800/50 rounded-full px-3 py-1 text-xs text-cyan-300">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span>STATUS: ACTIVE EVALUATION — Working Prototype Available</span>
+            <span>STATUS: TECHNICAL EVALUATION - VALIDATED SYNTHETIC WORKLOADS</span>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            A Secure, Workload-Aware Edge Data Plane for Constrained Networks
+            Intelligent Data Reduction for the Edge
           </h1>
           
           <p className="text-lg text-slate-400 max-w-3xl leading-relaxed">
-            Aetheris Edge combines workload-aware data optimization, source-authenticated transport, and lightweight edge execution for environments where bandwidth, latency, and compute resources are constrained.
+            Aetheris Edge is a software-defined data-plane technology that reduces repeated structured data by transmitting changes and reconstructing original records at the receiving endpoint. Designed for bandwidth-constrained, latency-sensitive edge and gateway environments.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 pt-6">
             <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl">
               <h3 className="text-sm font-semibold text-cyan-400 mb-2">High-Performance Rust Data Plane</h3>
-              <p className="text-xs text-slate-400">High-performance Rust data-plane runtime designed for a low memory footprint (&lt;0.2 CPU cores / &lt;64 MB RAM).</p>
+              <p className="text-xs text-slate-400">Rust-based data-plane evaluation runtime with containerized deployment and x86-64 and ARM64 release artifacts. Resource requirements depend on workload and deployment configuration.</p>
             </div>
             <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl">
-              <h3 className="text-sm font-semibold text-cyan-400 mb-2">Packet Authentication</h3>
-              <p className="text-xs text-slate-400">Source authentication powered by Hybrid X25519 + ML-KEM-768 & ML-DSA-65 (Implemented).</p>
+              <h3 className="text-sm font-semibold text-cyan-400 mb-2">Authentication & Key Management</h3>
+              <p className="text-xs text-slate-400">Prototype authentication and key-establishment capabilities include post-quantum cryptographic components. Security configuration and integration require deployment-specific validation.</p>
             </div>
             <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl">
-              <h3 className="text-sm font-semibold text-cyan-400 mb-2">Payload Confidentiality & Observability</h3>
-              <p className="text-xs text-slate-400">In-flight AES-256-GCM encryption with Prometheus / Grafana telemetry pipeline integration.</p>
+              <h3 className="text-sm font-semibold text-cyan-400 mb-2">Security & Observability</h3>
+              <p className="text-xs text-slate-400">Prototype encryption capabilities and Prometheus-compatible operational metrics. Published data-reduction results do not represent a fully validated encrypted network deployment.</p>
             </div>
           </div>
         </section>
@@ -173,7 +173,7 @@ export default function Home() {
         <section id="cybersecurity" className="space-y-8 border-t border-slate-800/80 pt-12">
           <div>
             <h2 className="text-xs font-bold text-cyan-400 uppercase tracking-widest">Cybersecurity</h2>
-            <h3 className="text-2xl font-bold text-white mt-1">Cryptographic Architecture & Progression</h3>
+            <h3 className="text-2xl font-bold text-white mt-1">Security Architecture & Validation Status</h3>
           </div>
 
           <div className="overflow-x-auto border border-slate-800 rounded-xl">
@@ -181,24 +181,24 @@ export default function Home() {
               <thead className="bg-slate-900 text-slate-300 border-b border-slate-800">
                 <tr>
                   <th className="p-4 font-semibold">Security Function</th>
-                  <th className="p-4 font-semibold text-cyan-400">Current Prototype (Implemented)</th>
-                  <th className="p-4 font-semibold text-slate-400">Target / Roadmap</th>
+                  <th className="p-4 font-semibold text-cyan-400">Prototype Configuration - Status</th>
+                  <th className="p-4 font-semibold text-slate-400">Planned Development</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800 text-slate-300">
                 <tr>
                   <td className="p-4 font-medium text-white">Packet Authentication</td>
-                  <td className="p-4 text-cyan-300">ML-DSA-65 (Implemented)</td>
+                  <td className="p-4 text-cyan-300">ML-DSA-65 (Prototype; validation pending)</td>
                   <td className="p-4 text-slate-400">ML-DSA-87 (Next-gen high security)</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-medium text-white">Payload Encryption</td>
-                  <td className="p-4 text-cyan-300">AES-256-GCM (Implemented)</td>
+                  <td className="p-4 text-cyan-300">AES-256-GCM (Prototype; validation pending)</td>
                   <td className="p-4 text-slate-400">Implementation hardening</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-medium text-white">Key Exchange</td>
-                  <td className="p-4 text-cyan-300">Hybrid X25519 + ML-KEM-768 (Implemented)</td>
+                  <td className="p-4 text-cyan-300">Hybrid X25519 + ML-KEM-768 (Prototype; validation pending)</td>
                   <td className="p-4 text-slate-400">Pure ML-KEM-1024</td>
                 </tr>
                 <tr>
@@ -209,35 +209,53 @@ export default function Home() {
               </tbody>
             </table>
           </div>
+          <p className="text-xs text-slate-400 bg-slate-900/60 border border-slate-800 rounded-lg p-4">
+            Security features describe prototype configurations. Published data-reduction
+            results do not validate every cryptographic configuration. Feature compilation
+            does not establish FIPS certification or production security accreditation.
+            Partner-specific security and performance testing is required.
+          </p>
         </section>
 
         {/* SECTION 5: BENCHMARKS */}
         <section id="benchmarks" className="space-y-8 border-t border-slate-800/80 pt-12">
           <div>
-            <h2 className="text-xs font-bold text-cyan-400 uppercase tracking-widest">Benchmark Harness</h2>
-            <h3 className="text-2xl font-bold text-white mt-1">Laboratory Test Results & Methodology</h3>
-            <p className="text-xs text-slate-500 mt-2 italic bg-slate-900/60 p-3 rounded border border-slate-800">
-              [ENVIRONMENT DISCLAIMER NOTE] Metrics recorded within a local synthetic test harness under a configured 100-millicore CPU limit and simulated SATCOM latency profiles. Results reflect controlled testing and require independent customer validation.
+            <h2 className="text-xs font-bold text-cyan-400 uppercase tracking-widest">Validation Evidence</h2>
+            <h3 className="text-2xl font-bold text-white mt-1">Measured Performance on Structured Synthetic Workloads</h3>
+            <p className="text-xs text-slate-400 mt-2 bg-slate-900/60 p-4 rounded border border-slate-800">
+              Results reflect controlled local Unix-socket evaluation workloads using structured telemetry frames.
+              Byte reduction is measured at the framed application-data boundary, not across a complete encrypted
+              network connection. Internal processing measurements exclude network transport, encryption overhead,
+              and receiver-side reconstruction. Results are workload-dependent and require independent validation
+              in each prospective deployment environment.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl text-center space-y-2">
-              <span className="text-3xl font-black text-cyan-400">&lt;0.5 ms</span>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">p99 Latency Goal</h4>
-              <p className="text-xs text-slate-400">Observed execution time from test-harness ingress to egress dispatch for selected telemetry packet batches.</p>
+              <span className="text-3xl font-black text-cyan-400">45.60%</span>
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Framed-Byte Reduction</h4>
+              <p className="text-xs text-slate-400">
+                Measured reduction on the documented repetitive structured-data workload.
+                Not a claim of equivalent network bandwidth savings.
+              </p>
             </div>
 
             <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl text-center space-y-2">
-              <span className="text-3xl font-black text-cyan-400">54.5%–56.9%</span>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Net Wire Savings Baseline</h4>
-              <p className="text-xs text-slate-400">Measured across structured telemetry and state-sync testbed workloads before cryptographic transport.</p>
+              <span className="text-3xl font-black text-cyan-400">31,000 / 31,000</span>
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Exact Reconstruction</h4>
+              <p className="text-xs text-slate-400">
+                Original records reconstructed exactly across the documented synthetic validation runs.
+              </p>
             </div>
 
             <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-xl text-center space-y-2">
-              <span className="text-3xl font-black text-cyan-400">100%</span>
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Tamper Verification</h4>
-              <p className="text-xs text-slate-400">Authentication checks identified all deliberately modified packets within the defined synthetic test set.</p>
+              <span className="text-3xl font-black text-cyan-400">99.98%</span>
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Internal Processing Within 100 Microseconds</h4>
+              <p className="text-xs text-slate-400">
+                30,995 of 31,000 measured frames completed internal processing within 100 microseconds
+                in the recorded synthetic runs. Not an end-to-end latency measurement.
+              </p>
             </div>
           </div>
         </section>
@@ -246,26 +264,26 @@ export default function Home() {
         <section id="evaluation" className="space-y-8 border-t border-slate-800/80 pt-12">
           <div>
             <h2 className="text-xs font-bold text-cyan-400 uppercase tracking-widest">Technical Evaluation</h2>
-            <h3 className="text-2xl font-bold text-white mt-1">3-Step Technical Evaluation Path</h3>
+            <h3 className="text-2xl font-bold text-white mt-1">Structured Technical Evaluation Path</h3>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-xl space-y-2">
               <span className="text-xs font-bold text-cyan-400">STEP 01</span>
-              <h4 className="text-base font-bold text-white">Discovery & Staging</h4>
-              <p className="text-xs text-slate-400">Define target workload, baseline network metrics, and deploy sidecar in the testbed environment.</p>
+              <h4 className="text-base font-bold text-white">Workload Discovery & Scope</h4>
+              <p className="text-xs text-slate-400">Agree on eligible data types, interfaces, baseline measurements, acceptance criteria, and test boundaries.</p>
             </div>
 
             <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-xl space-y-2">
               <span className="text-xs font-bold text-cyan-400">STEP 02</span>
-              <h4 className="text-base font-bold text-white">Impairment Testing</h4>
-              <p className="text-xs text-slate-400">Conduct controlled impairment testing under simulated latency, jitter, and packet loss.</p>
+              <h4 className="text-base font-bold text-white">Initial Technical Proof Point</h4>
+              <p className="text-xs text-slate-400">Conduct a limited, mutually agreed technical assessment at no charge, using defined workloads and measurement boundaries.</p>
             </div>
 
             <div className="bg-slate-900/40 border border-slate-800 p-6 rounded-xl space-y-2">
               <span className="text-xs font-bold text-cyan-400">STEP 03</span>
-              <h4 className="text-base font-bold text-white">Reporting & Review</h4>
-              <p className="text-xs text-slate-400">Deliver joint evaluation report, A/B payload metrics, and production recommendations.</p>
+              <h4 className="text-base font-bold text-white">Evidence Review & Pilot Decision</h4>
+              <p className="text-xs text-slate-400">Review reconstruction accuracy, measured data reduction, processing overhead, and operational fit. Any subsequent paid pilot is scoped and priced separately.</p>
             </div>
           </div>
         </section>
